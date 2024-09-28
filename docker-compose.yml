@@ -1,0 +1,31 @@
+services:
+  db:
+    image: mysql:latest
+    # Macの場合はplatformを指定しないとエラーが発生する
+    platform: linux/amd64
+    environment:
+      TZ: Asia/Tokyo
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./project/.env.local
+    volumes:
+      # データを永続化するためのフォルダをマウント
+      - ./docker/mysql/db:/var/lib/mysql
+      # 設定ファイルをマウント
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    restart: always
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./project:/project
+    ports:
+      - '8000:8000'
+      - '80:80'
+    depends_on:
+      - db
+    restart: always
+    privileged: true
