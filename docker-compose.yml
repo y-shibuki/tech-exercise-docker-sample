@@ -7,6 +7,8 @@ services:
       TZ: Asia/Tokyo
     ports:
       - "3306:3306"
+    expose:
+      - '3306'
     env_file:
       - ./project/.env.local
     volumes:
@@ -24,7 +26,8 @@ services:
       - ./project:/project
     ports:
       - '8000:8000'
-      - '80:80'
+    expose:
+      - '8000'
     depends_on:
       - db
     restart: always
