@@ -25,6 +25,9 @@ DEBUG = os.environ.get("DEBUG") == "True"
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
+if os.environ.get("SERVER_IP_ADDRESS"):
+    ALLOWED_HOSTS.append(os.environ.get("SERVER_IP_ADDRESS"))
+
 INSTALLED_APPS = [
     "app.apps.AppConfig",
     "django.contrib.admin",
