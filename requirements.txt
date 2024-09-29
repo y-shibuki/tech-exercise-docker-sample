@@ -2,3 +2,4 @@ Django==3.2.25
 pillow==10.4.0 # Djangoで画像を扱うためのライブラリ
 python-dotenv==1.0.1 # 環境変数を読み込むためのライブラリ
 mod-wsgi==5.0.0 # ApacheとDjangoを連携させるためのライブラリ
+mysqlclient==2.2.4 # DjangoでMySQLを使うためのライブラリ
